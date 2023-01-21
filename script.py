@@ -2,17 +2,15 @@
 
 from ipaddress import ip_address
 
-
-initial_ips = open('initial_ips.txt', 'r')
-ips = open('ips.txt', 'w')
-
-for addr in initial_ips:
-	try:
-		a = ip_address(addr)
-		if not a.is_private:
-			ips.write(addr)
-
-	except ValueError:
-		pass
+with open('initial_ips.txt') as initial_ips:
+	lines = [line.rstrip() for line in initial_ips]
+	ips = open('ips.txt', 'w')
+	for addr in lines:
+		try:
+			a = ip_address(addr)
+			if not a.is_private:
+				ips.write(addr)
+		except ValueError:
+			print("ValueError")
 initial_ips.close()
 ips.close()
