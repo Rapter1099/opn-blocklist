@@ -9,7 +9,7 @@ with open('initial_ips.txt') as initial_ips:
 		try:
 			a = ip_address(addr)
 			if not a.is_private:
-				ips.write(addr)
+				ips.write(addr+"\n")
 		except ValueError:
 			print("ValueError")
 initial_ips.close()
